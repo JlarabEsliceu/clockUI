@@ -1,0 +1,212 @@
+/* Guia d'estil: Material Design 3 (https://m3.material.io/) */
+
+:root {
+  --primary: #006a6a;
+  --on-primary: #ffffff;
+  --primary-container: #9cf1f0;
+  --on-primary-container: #002020;
+  --surface: #f4fbfa;
+  --surface-container: #e3e9e9;
+  --on-surface: #161d1d;
+  --outline: #6f7979;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary: #80d5d4;
+    --on-primary: #003737;
+    --primary-container: #004f4f;
+    --on-primary-container: #9cf1f0;
+    --surface: #0e1514;
+    --surface-container: #252b2b;
+    --on-surface: #dde4e3;
+    --outline: #889392;
+  }
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Roboto", sans-serif;
+  color: var(--on-surface);
+  background: var(--surface);
+}
+
+/* Pestanyes */
+nav {
+  background: var(--surface-container);
+}
+
+nav > ul {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+nav > ul > li {
+  flex: 1;
+}
+
+nav a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 4px;
+  color: var(--on-surface);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+nav a .material-icons {
+  padding: 4px 20px;
+  border-radius: 16px;
+}
+
+body:has(#clock:target) a[href="#clock"] .material-icons,
+body:has(#alarm:target) a[href="#alarm"] .material-icons,
+body:has(#stopwatch:target) a[href="#stopwatch"] .material-icons,
+body:has(#timer:target) a[href="#timer"] .material-icons,
+body:not(:has(:target)) a[href="#clock"] .material-icons {
+  background: var(--primary-container);
+  color: var(--on-primary-container);
+}
+
+/* Vistes */
+main {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  padding: 24px 16px;
+}
+
+main > section:not(:target) {
+  display: none;
+}
+
+/* Si no hi ha cap pestanya seleccionada es mostra el rellotge */
+main:not(:has(:target)) > #clock {
+  display: block;
+}
+
+main > section {
+  width: 100%;
+  max-width: 600px;
+}
+
+x-clock,
+x-alarm,
+x-stopwatch,
+x-timer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+time {
+  font-size: 4rem;
+  font-weight: 300;
+  font-variant-numeric: tabular-nums;
+}
+
+input[type="time"] {
+  padding: 8px 12px;
+  border: 1px solid var(--outline);
+  border-radius: 4px;
+  font: inherit;
+  font-size: 1.5rem;
+  color: inherit;
+  background: none;
+}
+
+/* Botons */
+.controls {
+  display: flex;
+  gap: 12px;
+}
+
+button {
+  width: 56px;
+  height: 56px;
+  border: 0;
+  border-radius: 16px;
+  color: var(--on-primary-container);
+  background: var(--primary-container);
+  cursor: pointer;
+}
+
+button:hover {
+  filter: brightness(0.9);
+}
+
+button.add,
+button.start {
+  color: var(--on-primary);
+  background: var(--primary);
+}
+
+/* Alarmes */
+x-alarm .items,
+.timers {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.alarms {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 12px;
+  background: var(--surface-container);
+}
+
+.alarms[paused] input {
+  opacity: 0.5;
+}
+
+.alarms[ringing] {
+  outline: 3px solid var(--primary);
+}
+
+/* Temporitzador: s'il·lumina l'opció de bucle seleccionada */
+x-timer[loop] button.loop,
+x-timer:not([loop]) button.no-loop {
+  color: var(--on-primary);
+  background: var(--primary);
+}
+
+.current-interval {
+  border-color: var(--primary);
+  outline: 2px solid var(--primary);
+}
+
+/* Mòbil */
+@media (max-width: 600px) {
+  nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+
+  main {
+    padding-bottom: 100px;
+  }
+
+  nav a {
+    font-size: 0.75rem;
+  }
+
+  time {
+    font-size: 3rem;
+  }
+}

@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="ca">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Rellotge</title>
+    <link rel="stylesheet" href="./src/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li>
+          <a href="#clock">
+            <span class="material-icons">schedule</span>Rellotge
+          </a>
+        </li>
+        <li>
+          <a href="#alarm"><span class="material-icons">alarm</span>Alarmes</a>
+        </li>
+        <li>
+          <a href="#stopwatch">
+            <span class="material-icons">timer</span>Cronòmetre
+          </a>
+        </li>
+        <li>
+          <a href="#timer">
+            <span class="material-icons">hourglass_empty</span>Temporitzador
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <main>
+      <section id="clock">
+        <x-clock>
+          <time>00:00:00</time>
+        </x-clock>
+      </section>
+      <section id="alarm">
+        <x-alarm>
+          <template>
+            <section class="alarms">
+              <input type="time" min="00:00" max="23:59" />
+              <section class="controls">
+                <button class="start material-icons" title="Activa">
+                  alarm_on
+                </button>
+                <button class="pause material-icons" title="Desactiva">
+                  alarm_off
+                </button>
+                <button class="delete material-icons" title="Elimina">
+                  delete
+                </button>
+              </section>
+            </section>
+          </template>
+          <section class="items"></section>
+          <section class="controls">
+            <button class="add material-icons" title="Afegeix alarma">
+              add_alarm
+            </button>
+          </section>
+        </x-alarm>
+      </section>
+      <section id="stopwatch">
+        <x-stopwatch>
+          <time datetime="PT0S">00:00:00.00</time>
+          <section class="controls">
+            <button class="start material-icons" title="Inicia">timer</button>
+            <button class="pause material-icons" title="Pausa">
+              timer_off
+            </button>
+            <button class="restart material-icons" title="Reinicia">
+              restart_alt
+            </button>
+          </section>
+        </x-stopwatch>
+      </section>
+      <section id="timer">
+        <x-timer>
+          <time datetime="PT0S">00:00:00.00</time>
+          <section class="items">
+            <section class="timers">
+              <input
+                type="time"
+                min="00:00:00"
+                max="23:59:59"
+                value="00:03:00"
+                step="1"
+              />
+              <input
+                type="time"
+                min="00:00:00"
+                max="23:59:59"
+                value="00:01:00"
+                step="1"
+              />
+            </section>
+          </section>
+          <section class="controls">
+            <button class="start material-icons" title="Inicia">timer</button>
+            <button class="pause material-icons" title="Pausa">
+              timer_off
+            </button>
+            <button class="restart material-icons" title="Reinicia">
+              restart_alt
+            </button>
+            <button class="loop material-icons" title="Repeteix">loop</button>
+            <button class="no-loop material-icons" title="No repeteixis">
+              sync_disabled
+            </button>
+          </section>
+        </x-timer>
+      </section>
+    </main>
+    <audio id="alarm-sound" preload="auto">
+      <source src="./src/assets/audio/alarm.webm" type="audio/webm" />
+      <source src="./src/assets/audio/alarm.m4a" type="audio/mp4" />
+    </audio>
+    <audio id="timer-sound" preload="auto">
+      <source src="./src/assets/audio/timer.webm" type="audio/webm" />
+      <source src="./src/assets/audio/timer.m4a" type="audio/mp4" />
+    </audio>
+    <script type="module" src="./src/app.js"></script>
+  </body>
+</html>
